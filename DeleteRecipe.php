@@ -8,7 +8,7 @@
     }
 
     $userID = $_SESSION["UserID"];
-    $recipeID = intval($_GET["RecipeID"]); // Ensure it's an integer
+    $recipeID = intval($_GET["RecipeID"]);
 
     $sql = "DELETE FROM RecipesTable WHERE RecipeID = ? AND AuthorID = ?";
     $stmt = $conn->prepare($sql);
