@@ -7,7 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = password_hash(trim($_POST["password"]), PASSWORD_DEFAULT);
 
     try {
-        // Check if username already exists
         $checkSql = "SELECT UserID FROM UsersTable WHERE Username = ?";
         $checkStmt = $conn->prepare($checkSql);
         $checkStmt->bind_param("s", $username);
@@ -18,7 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             throw new Exception("Bu kullanıcı adı zaten kullanılıyor. Lütfen başka bir ad seçin.");
         }
 
-        // Insert new user
         $sql = "INSERT INTO UsersTable (Username, UserPassword) VALUES (?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ss", $username, $password);
